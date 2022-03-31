@@ -8,6 +8,4 @@ if (loggedIn() && $id == $_SESSION['id'] || isAdmin()) {
     deleteUser($id);
 }
 
-//redirectTo("users.php");
-
-//$user = getUserById($id);
+redirectTo("users.php");
