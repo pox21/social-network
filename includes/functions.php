@@ -264,26 +264,25 @@ function phoneFormat($phone) {
     return $formatted;
 }
 
-//function upload
+function deleteUser($id) {
+    $user = getUserById($id);
+    $params = ['id' => $id];
 
-//function uploadImg($imagePath) {
-//    $params = [
-//        'image' => $imagePath,
-//    ];
-//    $sql = "INSERT INTO `images` (`image`) VALUES (:image);";
-//    return dbQuery($sql, $params, true);
-//}
-//
-//function getImages() {
-//    $sql = "SELECT * FROM `images`";
-//    return dbQuery($sql)->fetchAll();
-//}
-//
-//function removeImages($imageId) {
-//    $params = [
-//        'id' => $imageId,
-//    ];
-//    $sql = "DELETE FROM `images` WHERE `images` . `id` = :id";
-//    dbQuery($sql, $params, true);
-//    return true;
-//}
+    $sqlProfile = "DELETE FROM `users_profile` WHERE `users_profile`.`user_id` = :id;";
+    $sqlSocials = "DELETE FROM `socials` WHERE `socials`.`user_id` = :id;";
+    $sqlUser = "DELETE FROM `users` WHERE `users`.`id` = :id;";
+
+    dbQuery($sqlProfile, $params, true);
+    dbQuery($sqlSocials, $params, true);
+    dbQuery($sqlUser, $params, true);
+
+    if ($id == $_SESSION['id']) {
+        redirectTo('page_register.php');
+    }
+
+    if (isAdmin()) {
+        setFlashMessage('updateData', 'Пользователь ' . $user['email'] . ' успешно удален');
+        redirectTo('users.php');
+    }
+
+}
