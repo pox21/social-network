@@ -28,7 +28,7 @@ include_once "templates/header.php";
             </div>
             <div class="panel-content">
               <div class="form-group">
-                <img src="<?=$user['avatar']?>" alt="" class="img-responsive" width="200">
+                <img src="<?=$user['avatar'] ?? 'img/demo/avatars/avatar-m.png'?>" alt="" class="img-responsive" width="200">
               </div>
               <?php if (isset($_SESSION['fileError']) && !empty($_SESSION['fileError']) ) { ?>
                 <div class="alert alert-danger">
@@ -40,7 +40,7 @@ include_once "templates/header.php";
                 <input type="file" id="example-fileinput" class="form-control-file" name="avatar">
               </div>
               <input type="hidden" name="id" value="<?=$_GET['id'] ?? ''?>">
-              <input type="hidden" name="old_avatar" value="<?=$user['avatar']?>" >
+              <input type="hidden" name="old_avatar" value="<?=$user['avatar'] ?? '' ?>" >
 
               <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                 <button class="btn btn-warning">Загрузить</button>
