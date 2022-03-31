@@ -7,6 +7,15 @@ if (!loggedIn() || ($id != $_SESSION['id'] && !isAdmin())) {
     redirectTo("page_login.php");
 }
 
+$user = getUserById($id);
+
+$statusArr = [
+    "online" => 'Онлайн',
+    "away" => 'Отошел',
+    "not_disturb" => 'Не беспокоить',
+    "offline" => 'Не в сети',
+];
+
 include_once "templates/header.php";
 ?>
 <main id="js-page-content" role="main" class="page-content mt-3">
@@ -33,9 +42,14 @@ include_once "templates/header.php";
                   <div class="form-group">
                     <label class="form-label" for="example-select">Выберите статус</label>
                     <select class="form-control" id="example-select" name="status">
-                      <option>Онлайн</option>
-                      <option>Отошел</option>
-                      <option>Не беспокоить</option>
+                      <?php foreach ($statusArr as $key => $status) {
+
+                        if ($user['status'] == $key) { ?>
+                          <option selected value="<?=$key?>"><?=$status?></option>
+                        <?php } else { ?>
+                          <option value="<?=$key?>"><?=$status?></option>
+                        <?php } ?>
+                      <?php } ?>
                     </select>
                   </div>
                 </div>

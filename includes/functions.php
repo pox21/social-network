@@ -219,7 +219,7 @@ function login($authData) {
     $_SESSION['login'] = $user['email'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['id'] = $user['id'];
-    setStatus($user['id'], 'Онлайн');
+    setStatus($user['id'], 'online');
     return true;
 }
 

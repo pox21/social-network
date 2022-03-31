@@ -48,9 +48,10 @@ include_once "templates/header.php";
 //            break;
 //        }
         $status = match ($user['status']) {
-            'Отошел' => 'status-danger',
-            'Онлайн' => 'status-success',
-            default => 'status-warning',
+            'away' => 'status-warning',
+            'online' => 'status-success',
+            'not_disturb' => 'status-danger',
+            default => 'status-secondary',
         };
       ?>
     <div class="col-xl-4">
