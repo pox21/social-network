@@ -62,19 +62,19 @@ include_once "templates/header.php";
                                 <span class="status <?=$status?> mr-3">
                                     <span class="rounded-circle profile-image d-block "
                                           style="background-image:url('<?= $user["avatar"] ? $user["avatar"] :
-                                              'https://ui-avatars.com/api/?name='. $user["username"] .'&background=random'?>'); background-size: cover;"></span>
+                                              'img/demo/avatars/avatar-m.png'?>'); background-size: cover;"></span>
                                 </span>
             <div class="info-card-text flex-1">
               <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info"
                  data-toggle="dropdown" aria-expanded="false">
                 <?=$user["username"]?>
 
-                  <?php if (isAdmin() || $user['user_id'] === $_SESSION['id']) { ?>
+                  <?php if (isAdmin() || $user['user_id'] === ($_SESSION['id'] ?? '')) { ?>
                     <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>
                     <i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>
                   <?php } ?>
               </a>
-                <?php if (isAdmin() || $user['user_id'] === $_SESSION['id']) { ?>
+                <?php if (isAdmin() || $user['user_id'] === ($_SESSION['id'] ?? '')) { ?>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="edit.php?id=<?=$user['user_id']?>">
                       <i class="fa fa-edit"></i>

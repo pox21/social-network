@@ -268,6 +268,8 @@ function deleteUser($id) {
     $user = getUserById($id);
     $params = ['id' => $id];
 
+    if ($user['avatar']) unlink("../" . $user['avatar']);
+
     $sqlProfile = "DELETE FROM `users_profile` WHERE `users_profile`.`user_id` = :id;";
     $sqlSocials = "DELETE FROM `socials` WHERE `socials`.`user_id` = :id;";
     $sqlUser = "DELETE FROM `users` WHERE `users`.`id` = :id;";
@@ -277,7 +279,7 @@ function deleteUser($id) {
     dbQuery($sqlUser, $params, true);
 
     if ($id == $_SESSION['id']) {
-        redirectTo('page_register.php');
+        redirectTo('includes/logout.php');
     }
 
     if (isAdmin()) {

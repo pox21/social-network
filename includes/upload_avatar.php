@@ -31,7 +31,7 @@ if (isset($_FILES['avatar']['error'])) {
         $tmpName = $_FILES['avatar']['tmp_name'];
         $nameFile = $_FILES['avatar']['name'];
         uplodFile($tmpName, $uploadDir, $nameFile, $_POST['id']);
-        unlink("../" . $_POST['old_avatar']);
+        if ($_POST['old_avatar']) unlink("../" . $_POST['old_avatar']);
         setFlashMessage('updateData', 'Аватарка успешно обновлена');
     }
 }
