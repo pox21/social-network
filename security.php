@@ -16,8 +16,17 @@ include_once "templates/header.php";
     <h1 class="subheader-title">
       <i class='subheader-icon fal fa-lock'></i> Безопасность
     </h1>
-
   </div>
+  <?php if (isset($_SESSION['passError']) && !empty($_SESSION['passError']) ) { ?>
+    <div class="alert alert-danger col-xl-6">
+        <?php displayFlashMessage('passError') ?>
+    </div>
+  <?php } ?>
+  <?php if (isset($_SESSION['emailError']) && !empty($_SESSION['emailError']) ) { ?>
+    <div class="alert alert-danger col-xl-6">
+        <?php displayFlashMessage('emailError') ?>
+    </div>
+  <?php } ?>
   <form action="includes/edit_user.php" method="post">
     <div class="row">
       <div class="col-xl-6">

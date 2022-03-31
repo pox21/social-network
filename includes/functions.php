@@ -103,7 +103,13 @@ function addUser($email, $pass) {
     return $userId;
 }
 
-function editEmail($user_id, $email, $pass) {
+function editCredentials($user_id, $email, $pass) {
+    $user = getUserByEmail($email);
+    if (!empty($user) && $user_id != $user['id'] ) {
+        setFlashMessage("emailError", "Такой E-mail уже занят");
+        return false;
+    }
+
     $params = [
         'id' => $user_id,
         'email' => $email,

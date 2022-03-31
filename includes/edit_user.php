@@ -9,9 +9,12 @@ if (isset($_POST) && !empty($_POST)) {
         redirectTo('security.php?id=' . $_POST["id"]);
     }
 
-    if (editEmail($_POST['id'], $_POST['email'], $_POST['pass'])) {
+    if (editCredentials($_POST['id'], $_POST['email'], $_POST['pass'])) {
         setFlashMessage('updateData', 'Почта и пароль успешно обновлены');
         loggedIn() ? redirectTo("users.php") : redirectTo("page_login.php");
+    } else {
+        redirectTo('security.php?id=' . $_POST['id']);
     }
 }
+
 redirectTo('users.php');
